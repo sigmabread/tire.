@@ -1,0 +1,286 @@
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <meta name="description" content="TireUnblocker can help you get through internet filters and bypass them to search the web privately. Enjoy features such as Advanced Tab Cloaking, Advanced About:Blank Cloaking (prevents sites from showing in browser history), an extremely clean UI, fast speeds and response times, and access to tons of apps and games.">
+    <meta name="keywords" content="TireUnblocker, internet filters, bypass filters, web privacy, tab cloaking, clean UI, fast speeds, apps, games">
+    <meta name="author" content="TireUnblocker Team">
+    <meta property="og:title" content="TireUnblocker">
+    <meta property="og:description" content="TireUnblocker can help you get through internet filters and bypass them to search the web privately. Enjoy features such as Advanced Tab Cloaking, Advanced About:Blank Cloaking (prevents sites from showing in browser history), an extremely clean UI, fast speeds and response times, and access to tons of apps and games.">
+    <meta property="og:image" content="https://tire-unblocker.vercel.app/img/UB.png">
+    <meta property="og:url" content="https://tire-unblocker.vercel.app">
+    <meta name="twitter:title" content="TireUnblocker">
+    <meta name="twitter:description" content="TireUnblocker can help you get through internet filters and bypass them to search the web privately. Enjoy features such as Advanced Tab Cloaking, Advanced About:Blank Cloaking (prevents sites from showing in browser history), an extremely clean UI, fast speeds and response times, and access to tons of apps and games.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+    <style>
+        /* Styling for the moving text bar */
+        .moving-bar {
+            color: grey;
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+            height: 10px;
+        }
+
+        /* Styling for the moving text animation */
+        .moving-text {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            animation: moveText 15s linear infinite;
+            font-family: Arial, sans-serif;
+            padding: 5px;
+        }
+
+        /* Keyframe animation for moving text */
+        @keyframes moveText {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            position: relative;
+            top: 170px; /* Adjusted from 190px */
+            color: grey; 
+            font-family: "Archivo Black", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 70px;
+        }
+
+        h3 {
+            text-align: center;
+            position: relative;
+            top: 150px; /* Adjusted from 190px */
+            color: grey; 
+            font-family: "Archivo Black", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        #daform {
+            text-align: center;
+            width: 700px;
+            margin: 130px auto 0; /* Adjusted from 170px */
+        }
+
+        .form__input {
+            text-align: center;
+            border-radius: 18px;
+            outline: none;
+            background: transparent;
+            border: 2px solid white;
+            color: grey;
+            width: 600px;
+            height: 50px;
+            margin-top: 10px;
+        }
+
+        .desc {
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            text-align: center;
+	color: grey;
+		font-family: arial;
+        }
+
+        .iframe1 {
+            border: none;
+        }
+
+        .x {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            top: 0px;
+            right: 0px;
+        }
+
+        .searchbox {
+            width: 47%;
+            height: 7%;
+            color: #FFFFFF;
+            position: absolute;
+            left: 20%;
+            top: 50%;
+        }
+    </style>
+	<script src="/uv/uv.bundle.js" defer></script>
+	<script src="/uv/uv.config.js" defer></script>
+	<script src="/register-sw.js" defer></script>
+	<script src="/search.js" defer></script>
+	<script src="index.js" defer></script>
+	<script src="/error.js" defer></script>
+    <title>Tire-UB</title>
+    <div id="container"></div>
+    <div class="moving-bar">
+        <div class="moving-text">Updates: THE FONT UPDATE</div>
+    </div>
+
+    <div class="title">
+        <h1 id="title1">TireUnblocker</h1>
+        <h3 placeholder="A proxy used to search the web privately" id="haha"></h3>
+        <br>
+    </div>
+
+    <form id="daform">
+        <input id="dasearchengine" value="https://www.google.com/search?q=%s" type="hidden"/> 
+        <input id="daaddress" type="text" placeholder="Search Google or type an URL" class="form__input"/>
+    </form>
+
+    <div class="desc">
+        <p id="uv-error"></p>
+        <pre id="uv-error-code"></pre>
+    </div>
+
+	<canvas id="cosmicBackground" style="position: absolute; top: 0; left: 0; z-index: -2;"></canvas>
+
+	<script>
+		var t = 0;
+		var c = document.getElementById("cosmicBackground");	 
+		var $ = c.getContext('2d');
+		c.width = window.innerWidth;
+		c.height = window.innerHeight;
+
+		window.addEventListener('resize', function() {
+		  c.width = window.innerWidth;
+		  c.height = window.innerHeight;
+		}, false);
+
+		function draw() {
+		  $.globalCompositeOperation = 'source-over';
+		  $.fillStyle = 'hsla(0,0%,0%,.1)';
+		  $.fillRect(0, 0, c.width, c.height);
+		  var foo, i, j, r;
+		  foo = Math.sin(t) * 2 * Math.PI;
+		  for (i=0; i<300; ++i) {
+			r = 300 * Math.cos(i * foo);
+			$.globalCompositeOperation = '';
+			$.fillStyle = 'hsla(0,0%,50%,0.7)';
+			$.beginPath();
+			$.arc(Math.sin(i) * r + (c.width / 2), 
+				  Math.cos(i) * r + (c.height / 2), 
+				  2, 0, Math.PI * 2);
+			$.fill();
+		  }
+		  t += 0.00001/2;
+		  return t %= 2 * Math.PI;
+		};
+
+		function run() {
+		  window.requestAnimationFrame(run);
+		  draw();
+		}
+		run();
+
+		var backgroundPulse = setInterval(pulseBackground, 5000);
+
+		function pulseBackground() {
+			var currentAlpha = parseFloat($.fillStyle.split(',')[3]);
+			var newAlpha = currentAlpha === 0.1 ? 0.15 : 0.1;
+			$.fillStyle = 'hsla(0,0%,0%,' + newAlpha + ')';
+		}
+
+		window.addEventListener('focus', function() {
+			clearInterval(backgroundPulse);
+			c.style.filter = "brightness(100%)";
+		});
+
+		window.addEventListener('blur', function() {
+			backgroundPulse = setInterval(pulseBackground, 5000);
+			c.style.filter = "brightness(50%)";
+		});
+
+		c.addEventListener('mousemove', function(event) {
+			var mouseX = event.clientX;
+			var mouseY = event.clientY;
+			$.clearRect(0, 0, c.width, c.height);
+			draw();
+			for (var i = 0; i < 300; ++i) {
+				r = 300 * Math.cos(i * Math.sin(t));
+				$.fillStyle = 'hsla(0,0%,50%,0.7)';
+				$.beginPath();
+				$.arc(Math.sin(i) * r + (c.width / 2), 
+					  Math.cos(i) * r + (c.height / 2), 
+					  2, 0, Math.PI * 2);
+				if (Math.abs(mouseX - (Math.sin(i) * r + (c.width / 2))) < 50 && 
+					Math.abs(mouseY - (Math.cos(i) * r + (c.height / 2))) < 50) {
+					$.fillStyle = 'hsla(0,0%,50%,1)';
+				}
+				$.fill();
+			}
+		});
+	</script>
+<script>
+    var haha = document.getElementById("haha");
+
+    function lmao(){
+      var lol = [
+        'Super cool site that displays sites!',
+        'Bypassing web filters since a long time ago.',
+        'TitaniumNetwork sucks, cry about it.',
+        'Do your homework.',
+        'Too slow? Host it yourself instead of complaining non-stop about your issues.',
+        'The voices in my head told me to finish this site.',
+        'Breaking every bone in your body since 1979.',
+        'If you see ads on this site, this idiot is making money off my stuff.',
+        'how do i type',
+        'What do I even put here?',
+        'yoooooooooooooooooooo!',
+        'TireUnblocker for dummies: Type in a URL below to access it.',
+        'Dear Teachers, This is TOTALLY a learning resource.',
+        'I got in trouble for this once.',
+        'Always check if a school chrome extension has a privacy policy, If not then you can punch your school administrators multiple times.',
+        'Cookie Clicker is useless, stop playing it.',
+        'How did this blow up again?',
+        'Submit an issue on GitHub if something broke in TireUnblocker. (If a website being used via TireUB breaks, not our problem)',
+        'Do people use this anymore?',
+        '*cricket noises*',
+	'Do a barrel roll',
+	'ur mom',
+	'Remember kids, dont do drugs!',
+	'If your teacher blocks this web proxy I WILL PUNCH HER/HIM IN THE FACE',
+	'Moms spagetti.... SOO GOOD'
+      ];
+
+      var hehe = Math.floor(Math.random() * lol.length);
+      haha.textContent = lol[hehe];
+    }
+
+    lmao()
+  </script>

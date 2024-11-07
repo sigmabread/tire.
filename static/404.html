@@ -1,0 +1,36 @@
+<title>404 | Error</title><center><img src="/img/404-tire.png" width="600px" height="300px">
+<h1>404 Not Found   <button onclick="gohome();" id="go" type="submit">
+          Go home?
+        </button><div id="emoticon"></div></h1>
+</center>
+<style>
+body {
+background-color: black;
+font-family: arial;
+overflow: hidden;
+}
+h1 {
+color:grey;
+font-size:60px;
+div {
+color:white;
+} 
+#go {
+color:blue;
+background-color: grey;
+border-radius: 50px;
+width: 100px;
+height: 100px;
+}</style>
+ <script>
+  //you can put ur own emoticons//
+        function getRandomEmoticon() {
+            var emoticons = [":(", "☹️", ":|", ":[", ":{", ":€", "😕", "🙁", "😖", "😣"];
+            return emoticons[Math.floor(Math.random() * emoticons.length)];
+        }
+
+        document.getElementById("emoticon").innerText = getRandomEmoticon();
+  function gohome(){
+    window.location.href=window.location.origin;
+  }
+    </script>

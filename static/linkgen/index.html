@@ -1,0 +1,120 @@
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: grey;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: grey;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
+        .link-display {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+
+    <div class="container">
+        <h1>TireUnblocker Link Generator</h1>
+        <button id="generateButton">Generate Link</button>
+        <div id="linkDisplay" class="link-display"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+      const links = [
+                "https://sales.tires.tdkare.ru/",
+                "https://about.tires.thelmadejager.co.za/",
+                "https://tire-exchange.24-7.ro/",
+                "https://tire-repairs.dyn.mk/",
+                "https://wheels.basewisdom.com/",
+                "https://tires.serverpit.com/",
+                "https://track-width.happyforever.com/",
+                "https://chassis.powermotors.com.br/",
+                "https://chassis.jlengineering.se/",
+                "https://car-engines.afrengineering-cd.com/",
+                "https://wheels522.bgdsupport.com",
+                "https://racecars.oceanracingseries.co.za",
+                "https://material.e1racecar.com",
+                "https://about.wheelbase.360technologies.ca",
+                "https://tires.componentseller.com",
+                "https://iliveina.whitemushroomhouse.com",
+                "https://reretireubrere.ftp.sh",
+                "https://tirereading.qc.to",
+                "https://idrinktirejuiceinthe.us.to",
+                "https://t.lema.cl",
+                "https://stilthybananas.0rg.us",
+                "https://ilikemy.corndaddy.com",
+                "https://iminside.urmomsbox.com",
+                "https://pennypencters.mine.bz",
+                "https://tiresgobounce.k.vu",
+                "https://iactually.farted.net",
+                "https://eduschools.us.to",
+                "https://tire.my.to",
+                "https://thetireis.mine.bz",
+                "https://mydogatemytire.dogdammit.com",
+                "https://ifeelsafeat.home.kg",
+                "https://urmomstires.hec.to",
+                "https://ce.indiancoins.com",
+                "https://t.ub.uk.to",
+                "https://ihaveaim.bot.nu",
+                "https://iliketiresandmoms.69.mu",
+                "https://edutire.fr.to",
+                "https://edu-vita.evs.net.br",
+                "https://school22edu.us.to",
+                "https://collageedu.uk.to",
+                "https://toschools.us.to",
+                "https://tire-edu.lema.cl"
+            ];
+            const generateButton = document.getElementById('generateButton');
+            const linkDisplay = document.getElementById('linkDisplay');
+
+            generateButton.addEventListener('click', function() {
+                // Clear previous link
+                linkDisplay.innerHTML = '';
+                // Select a random link
+                const randomLink = links[Math.floor(Math.random() * links.length)];
+                // Create a new link element
+                const link = document.createElement('a');
+                link.href = randomLink;
+                link.textContent = randomLink;
+                link.target = '_blank'; // Open link in a new tab
+                // Display the new link
+                linkDisplay.appendChild(link);
+                // Disable the button after first click
+                generateButton.disabled = true;
+            });
+        });
+    </script>
